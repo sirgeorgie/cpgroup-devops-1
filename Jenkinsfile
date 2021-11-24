@@ -10,4 +10,9 @@ pipeline {
 	    }
 	}
     }
+    post {
+	always {
+	    archiveArtifacts artifacts: 'synonyms', fingerprint: true
+	}
+    }
 }
