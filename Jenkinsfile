@@ -1,18 +1,23 @@
 pipeline {
     agent any
     tools {
-	go 'Golang version 1.17.3'
+	go 'Golang version 17.3'
     }
     stages {
 	stage('compilation') {
 	    steps {
-		sh 'go build synonyms.go'
+		sh 'cd hypernyms ; go build'
+	    }
+	}
+	stage('smoke-test') {
+	    steps {
+		sh './hypernyms/hypernyms'
 	    }
 	}
     }
     post {
 	always {
-	    archiveArtifacts artifacts: 'synonyms', fingerprint: true
+	    archiveArtifacts artifacts: 'hypernyms/hypernyms', fingerprint: true
 	}
     }
 }
