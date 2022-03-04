@@ -4,7 +4,7 @@
 ORACLE_SID=ORCLCDB
 export ORACLE_SID
 sqlplus /nolog <<- EOF
-	CONNECT sys/newPassword1234 AS SYSDBA
+	CONNECT system/newPassword1234@xe AS SYSDBA
 	alter system set db_recovery_file_dest_size = 10G;
 	alter system set db_recovery_file_dest = '/opt/oracle/oradata/recovery_area' scope=spfile;
 	shutdown immediate
